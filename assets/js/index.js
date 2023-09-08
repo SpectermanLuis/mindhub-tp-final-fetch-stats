@@ -171,11 +171,11 @@ function llenarTabla2Y3(resumen, ubicacion) {
     tabla = tabla + `<td>${evento.category} </td>`
     // tabla = tabla + `<td><div class="row celda-tabla"><div>U$S</div> <div>${evento.revenues.toLocaleString('es-AR')}</div></div> </td>`
     tabla = tabla + `<td><div class="row">
-    <div class="col-3">  
+    <div class="col-3 col-md-3">  
       <div>U$S</div>
     </div> 
 
-    <div class="col-6">  
+    <div class="col-3 col-md-3 alinea-celda">  
       ${evento.revenues.toLocaleString('es-AR')}
     </div> 
 
