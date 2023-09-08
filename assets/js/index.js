@@ -109,7 +109,7 @@ function generaCamposCalculados(datos) {
 
     // calcular promedio porcAsistencia 
     let promPorcAsistenciaEvento = (acumPorcAsistenciaEvento / datosEvento.length).toFixed(2)
-    resumenEventosUp.push({ category: categoria, revenues: parseInt(acumGananciaEvento), porcAsistencia: promPorcAsistenciaEvento })
+    resumenEventosUp.push({ category: categoria, revenues: acumGananciaEvento, porcAsistencia: promPorcAsistenciaEvento })
 
    console.log(resumenEventosUp)
 
@@ -169,7 +169,19 @@ function llenarTabla2Y3(resumen, ubicacion) {
   resumen.forEach(evento => {
     tabla = tabla + `<tr>`
     tabla = tabla + `<td>${evento.category} </td>`
-    tabla = tabla + `<td>U$S ${evento.revenues} </td>`
+    // tabla = tabla + `<td><div class="row celda-tabla"><div>U$S</div> <div>${evento.revenues.toLocaleString('es-AR')}</div></div> </td>`
+    tabla = tabla + `<td><div class="row">
+    <div class="col-3">  
+      <div>U$S</div>
+    </div> 
+
+    <div class="col-6">  
+      ${evento.revenues.toLocaleString('es-AR')}
+    </div> 
+
+  </div> 
+</td>` 
+ 
     tabla = tabla + `<td>${evento.porcAsistencia} % </td>`
     tabla = tabla + `</tr>`
   })
