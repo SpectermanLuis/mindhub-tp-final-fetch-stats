@@ -313,20 +313,33 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
 // volver a crearMostrarTarjetas con arreglo filtrado
 
 const inputTexto = document.querySelector("#texto")
-const divChecks = document.getElementById("contenedor-checkboxes")
-const botonMail = document.getElementById("form-mail")
+if (inputTexto) {
+  inputTexto.addEventListener("input", () => { filtroCruzado() })  
+}
 
-botonMail.addEventListener("submit", () => {
-  Swal.fire(
+const divChecks = document.getElementById("contenedor-checkboxes")
+if (divChecks) {
+  divChecks.addEventListener("change", filtroCruzado)  
+}
+
+const botonMail = document.getElementById("form-mail")
+if (botonMail) {
+ botonMail.addEventListener("submit", () => {
+/*    Swal.fire(
     'Congratulations!!!',
     'Mail Send',
     'success'
   )
+ */
+   Swal.fire({
+    title: "Mail Send",
+    confirmButtonText: "Ok",
+    timer:3000,
+}) ;
+
 })
 
-inputTexto.addEventListener("input", () => { filtroCruzado() })
-divChecks.addEventListener("change", filtroCruzado)
-
+}
 
 function filtroCruzado() {
 
