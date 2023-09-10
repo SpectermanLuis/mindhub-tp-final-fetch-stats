@@ -19,17 +19,17 @@ nav {
 }
 
 .header_detail{
-  min-height:18vh
+  min-height:12vh
 }
 
 .footer_detail{
   background-color: #4682a9;
-  min-height:5vh  
+  min-height:8vh  
 }
 
 .main_detail{
   background-color: #91c8e4;
-  min-height:77vh    
+  min-height:80vh     
  
 }
 

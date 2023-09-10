@@ -10,7 +10,11 @@ let urlApi = "https://mindhub-xj03.onrender.com/api/amazing";
 let datosObtenidos = {}
 let arregloEventosBase = []
 
+traerDatos(urlApi)
+
 function traerDatos(url) {
+  // Obtener datos desde la api (url) 
+  // Procesar segun que pagina este activada
   fetch(url)
     .then(response => response.json())
     .then(datosApi => {
@@ -34,7 +38,7 @@ function traerDatos(url) {
     .catch(error => console.log(error))
 }
 
-traerDatos(urlApi)
+
 
 
 function generaCamposCalculados(datos) {
@@ -50,7 +54,6 @@ function generaCamposCalculados(datos) {
       // calculo evento past
       evento.ganancia = evento.price * evento.assistance
       evento.porcAsistencia = parseFloat(((evento.assistance * 100) / evento.capacity).toFixed(2));
-
     }
 
   })
@@ -83,7 +86,6 @@ function generaCamposCalculados(datos) {
 
 
 
-
   // *******************************************
   // *  calculos para la segunda tabla UPCOMING*
   // *******************************************
@@ -111,10 +113,7 @@ function generaCamposCalculados(datos) {
     let promPorcAsistenciaEvento = (acumPorcAsistenciaEvento / datosEvento.length).toFixed(2)
     resumenEventosUp.push({ category: categoria, revenues: acumGananciaEvento, porcAsistencia: promPorcAsistenciaEvento })
 
-    console.log(resumenEventosUp)
-
     llenarTabla2Y3(resumenEventosUp, tabla2StatsContenedor)
-
   })
 
 
@@ -151,6 +150,7 @@ function generaCamposCalculados(datos) {
 }
 
 
+
 function llenarTabla1EventStatics(highpercent, lowpercent, highcapacity, ubicacion) {
 
   let tabla = ""
@@ -162,6 +162,7 @@ function llenarTabla1EventStatics(highpercent, lowpercent, highcapacity, ubicaci
   ubicacion.innerHTML = tabla
 }
 
+
 function llenarTabla2Y3(resumen, ubicacion) {
 
   let tabla = ""
@@ -169,7 +170,6 @@ function llenarTabla2Y3(resumen, ubicacion) {
   resumen.forEach(evento => {
     tabla = tabla + `<tr>`
     tabla = tabla + `<td>${evento.category} </td>`
-    // tabla = tabla + `<td><div class="row celda-tabla"><div>U$S</div> <div>${evento.revenues.toLocaleString('es-AR')}</div></div> </td>`
     tabla = tabla + `<td><div class="row">
     <div class="col-3 col-md-3">  
       <div>U$S</div>
@@ -189,26 +189,6 @@ function llenarTabla2Y3(resumen, ubicacion) {
   ubicacion.innerHTML = tabla
 }
 
-/* async function traerDatos() {
-  try {
-    const response = await fetch(urlApi);
-    const datos = await response.json();
-    return datos;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function obtenerYMostrarDatos() {
- datosObtenidos = await traerDatos();
- crearMostrarCheckboxes(datosObtenidos.events, chekboxesContenedor)
- arregloEventosBase = crearArregloEventosBase(datosObtenidos)
- crearMostrarTarjetas(arregloEventosBase, tarjetasContenedor)
-}
-
-obtenerYMostrarDatos()
-
- */
 
 
 function crearMostrarCheckboxes(arregloEventos, ubicacion) {
@@ -312,33 +292,30 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
 // poner filtros
 // volver a crearMostrarTarjetas con arreglo filtrado
 
+
 const inputTexto = document.querySelector("#texto")
 if (inputTexto) {
-  inputTexto.addEventListener("input", () => { filtroCruzado() })  
+  inputTexto.addEventListener("input", () => { filtroCruzado() })
 }
 
 const divChecks = document.getElementById("contenedor-checkboxes")
 if (divChecks) {
-  divChecks.addEventListener("change", filtroCruzado)  
+  divChecks.addEventListener("change", filtroCruzado)
 }
+
+
 
 const botonMail = document.getElementById("form-mail")
 if (botonMail) {
- botonMail.addEventListener("submit", () => {
-/*    Swal.fire(
-    'Congratulations!!!',
-    'Mail Send',
-    'success'
-  )
- */
-   Swal.fire({
-    title: "Mail Send",
-    confirmButtonText: "Ok",
-    timer:3000,
-}) ;
+  botonMail.addEventListener("submit", () => {
 
-})
+    Swal.fire({
+      title: "Mail Send",
+      confirmButtonText: "Ok",
+      timer: 25000,
+    });
 
+  })
 }
 
 function filtroCruzado() {
@@ -459,3 +436,24 @@ function crearDetailsEvento(evento, ubicacion) {
 `
   ubicacion.innerHTML = detalleEvento
 }
+
+/* async function traerDatos() {
+  try {
+    const response = await fetch(urlApi);
+    const datos = await response.json();
+    return datos;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function obtenerYMostrarDatos() {
+ datosObtenidos = await traerDatos();
+ crearMostrarCheckboxes(datosObtenidos.events, chekboxesContenedor)
+ arregloEventosBase = crearArregloEventosBase(datosObtenidos)
+ crearMostrarTarjetas(arregloEventosBase, tarjetasContenedor)
+}
+
+obtenerYMostrarDatos()
+
+ */
