@@ -15,7 +15,7 @@ function traerDatos(url) {
     .then(response => response.json())
     .then(datosApi => {
       datosObtenidos = datosApi
-      
+
       if (document.title == "Index" || document.title == "Upcoming_Events" || document.title == "Past_Events") {
 
         crearMostrarCheckboxes(datosObtenidos.events, chekboxesContenedor)
@@ -111,7 +111,7 @@ function generaCamposCalculados(datos) {
     let promPorcAsistenciaEvento = (acumPorcAsistenciaEvento / datosEvento.length).toFixed(2)
     resumenEventosUp.push({ category: categoria, revenues: acumGananciaEvento, porcAsistencia: promPorcAsistenciaEvento })
 
-   console.log(resumenEventosUp)
+    console.log(resumenEventosUp)
 
     llenarTabla2Y3(resumenEventosUp, tabla2StatsContenedor)
 
@@ -155,15 +155,15 @@ function llenarTabla1EventStatics(highpercent, lowpercent, highcapacity, ubicaci
 
   let tabla = ""
   tabla = tabla + `<tr>`
-  tabla = tabla + `<td>${highpercent.name} </td>`
-  tabla = tabla + `<td>${lowpercent.name} </td>`
-  tabla = tabla + `<td>${highcapacity.name} </td>`
+  tabla = tabla + `<td><a href="../../assets/pages/details.html?_id=${highpercent._id}" class="btn btn-primary">${highpercent.name}</a></td>`
+  tabla = tabla + `<td><a href="../../assets/pages/details.html?_id=${lowpercent._id}" class="btn btn-primary">${lowpercent.name}</a></td>`
+  tabla = tabla + `<td><a href="../../assets/pages/details.html?_id=${highcapacity._id}" class="btn btn-primary">${highcapacity.name}</a></td>`
   tabla = tabla + `</tr>`
   ubicacion.innerHTML = tabla
 }
 
 function llenarTabla2Y3(resumen, ubicacion) {
-  
+
   let tabla = ""
 
   resumen.forEach(evento => {
@@ -180,19 +180,14 @@ function llenarTabla2Y3(resumen, ubicacion) {
     </div> 
 
   </div> 
-</td>` 
- 
+</td>`
+
     tabla = tabla + `<td>${evento.porcAsistencia} % </td>`
     tabla = tabla + `</tr>`
   })
 
-  ubicacion.innerHTML = tabla  
+  ubicacion.innerHTML = tabla
 }
-
-
-
-
-
 
 /* async function traerDatos() {
   try {
@@ -319,12 +314,22 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
 
 const inputTexto = document.querySelector("#texto")
 const divChecks = document.getElementById("contenedor-checkboxes")
+const botonMail = document.getElementById("form-mail")
+
+botonMail.addEventListener("submit", () => {
+  Swal.fire(
+    'Congratulations!!!',
+    'Mail Send',
+    'success'
+  )
+})
 
 inputTexto.addEventListener("input", () => { filtroCruzado() })
 divChecks.addEventListener("change", filtroCruzado)
 
+
 function filtroCruzado() {
-  
+
   let filtradoPorTexto = filtrarPorTexto(arregloEventosBase, inputTexto.value)
   let filtradoPorTextoYCheckboxes = filtrarPorCategoria(filtradoPorTexto)
 

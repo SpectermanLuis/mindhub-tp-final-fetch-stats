@@ -9,6 +9,8 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/style/styles.css">
     <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -123,9 +125,9 @@
 
     <main class="container-fluid">
 
-            <div class="row justify-content-center">
+        <form class="row justify-content-center" id="form-mail">
 
-             <div class="col-12 col-md-6 p-3">
+            <div class="col-12 col-md-6 p-3">
                 <div class="mb-0 mt-1">
                     <label for="name" class="form-label h6">Name:</label>
                     <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
@@ -142,12 +144,12 @@
                 </div>
 
                 <div class="mb-0 mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="boton-mail">Submit</button>
                 </div>
 
-            </div>   
-
             </div>
+
+        </form>
 
     </main>
 
@@ -172,11 +174,11 @@
 
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-
+   <script src="../../assets/js/index.js"></script>    
 
 </body>
 
